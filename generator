@@ -1,0 +1,22 @@
+#!/bin/bash
+
+ime=got
+st=$1
+broi=$2
+koi=$3
+
+g++ ./$ime.cpp -o ./$ime
+
+mkdir ./tests
+
+cp $koi.cpp gen.cpp
+g++ gen.cpp -o gen
+
+for i in $(seq -w $st $broi)
+do
+	./gen > ./tests/$ime.$i.in
+	./$ime < ./tests/$ime.$i.in > ./tests/$ime.$i.sol
+done
+
+rm gen.cpp
+rm gen

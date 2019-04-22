@@ -1,0 +1,9 @@
+#!/bin/bash
+
+i=$1
+
+cat ./tests/palindrom.$i.in
+cat ./tests/palindrom.$i.sol
+
+./palindrom70 <./tests/palindrom.$i.in
+./palindrom100 <./tests/palindrom.$i.in

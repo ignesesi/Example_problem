@@ -1,0 +1,41 @@
+#!/bin/bash
+
+#dete=$1
+#zad=$1
+tests=$1
+zad=nasko
+
+g++ -std=c++11 -O2 ./$zad.cpp -o ./$zad
+#g++ gen.cpp -o gen
+
+res=0
+cntTests=0
+
+#echo $zad
+
+tempfile=$(mktemp)
+
+for i in ./tests/*.in
+do
+	fname=$(basename $i .in)
+	inf=$fname.in
+	outf=$fname.sol
+
+	#timeout 1 
+	./$zad < ./tests/$inf > $tempfile
+	diff -q -Z $tempfile ./tests/$outf > /dev/null
+	if (( $? == 0 ))
+	then
+		res=$((res+1))
+		echo Test $fname: OK
+	else
+		echo Test $fname: WA
+	fi
+	cntTests=$((cntTests+1))
+done
+
+rm $tempfile
+
+echo RESULT: $res/$cntTests
+
+echo

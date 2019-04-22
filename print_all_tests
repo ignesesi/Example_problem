@@ -1,0 +1,12 @@
+i#!/bin/bash
+
+ime=got
+
+#./generator 20
+for i in $(seq -w 01 10)
+	do echo Test $i: 
+	#wc -c < tests/$ime.$i.in
+	cat tests/$ime.$i.in
+	cat tests/$ime.$i.sol
+done
+

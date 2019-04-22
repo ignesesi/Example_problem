@@ -1,0 +1,5 @@
+#!/bin/bash
+
+./generator 01 02 gen1
+./generator 03 04 gen2
+./generator 05 10 gen3
